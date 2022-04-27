@@ -36,8 +36,8 @@ export default class Users implements IApi {
           url: `${url}/users/`,
         };
         const postResponse = await axios(options)
-        .then((response: any) => console.log(response.data))
-        .catch((error: any) => console.error(error));
+        .then((response: any) => response.data)
+        .catch((error: any) => error);
         return postResponse;
     }
 

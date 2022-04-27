@@ -1,9 +1,10 @@
 import Users from "./users";
 const url: string = "http://localhost:3000"
 
-const users = new Users
 
 const print = async () => {
+  const users = new Users
+  
   let usersGet = await users.getUsers(url)
   console.log(usersGet);
   

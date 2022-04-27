@@ -8,8 +8,8 @@ type RequestResponse = {
 }
 
 interface IApi {
-    getUsers(url: string): Promise<User>,
-    addUser(url:string, body: {User}): Promise<RequestResponse>
+    getUsers(url: string): Promise<[User]>,
+    addUser(url:string, body: User): Promise<RequestResponse>
 }
 
 export {IApi, User, RequestResponse};

@@ -7,26 +7,36 @@ const url = "http://localhost:3000"
 
 async function useApi() {
   
-    axios.get(`${url}/users/`, {
+  await axios.get(`${url}/users`, {
         headers: {
       authorization: APIKEY,
     }
   })
   .then( (response) => console.log(response.data))
-  .catch( () => console.error(error));;
+  .catch( (error) => console.error(error));
 
   const data = { 'id': 2, "name": "Nico"};
   const options = {
       method: 'POST',
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
       data: qs.stringify(data),
-      url: `${url}/users/`,
+      url: `${url}/users`,
     };
     await axios(options)
     .then((response) => console.log(response.data))
     .catch(() => console.error(error));
   
-    await axios.get(`${url}/users/`, {
+    await axios.get(`${url}/users`, {
+        headers: {
+            authorization: APIKEY,
+          }
+        })
+        .then( (response) => console.log(response.data))
+        .catch( () => console.error(error));
+        
+        console.log('///////////');
+        
+    await axios.get(`${url}/products/`, {
         headers: {
             authorization: APIKEY,
           }
@@ -34,5 +44,6 @@ async function useApi() {
         .then( (response) => console.log(response.data))
         .catch( () => console.error(error));
       }
+      
       
 useApi();

@@ -1,24 +1,27 @@
-
+import { IApi, User, RequestResponse } from './interface-api';
 const axios = require('axios');
+const qs = require('qs');
 const env = require('dotenv').config().parsed;
 const APIKEY = env['API-KEY'];
 
 export default class Users implements IApi {
-    id: number;
-    name: string;
+    // id: number;
+    // name: string;
+  constructor() {}
 
-    const getUsers = async(url: string): Promise<User> {
+    public async getUsers(url: string): Promise<User> {
   
-        await axios.get(`${url}/users/`, {
+      const response = await axios.get(`${url}/users/`, {
               headers: {
                 authorization: APIKEY,
               }
             })
-            .then( (response) => response.data)
-            .catch( (error) => error);;
+      return response.data
+            // .then( (response) => response.data)
+            // .catch( (error) => error);;
     }
 
-    const addUser = async(url:string, body: {User}): Promise<RequestResponse> {
+    public async addUser(url:string, body: {User: any}): Promise<RequestResponse> {
         // const data = { 'id': 2, "name": "Nico"};
         const options = {
           method: 'POST',
@@ -26,9 +29,10 @@ export default class Users implements IApi {
           data: qs.stringify(body),
           url: `${url}/users/`,
         };
-        await axios(options)
-        .then((response) => console.log(response.data))
-        .catch((error) => console.error(error));
+        const postResponse = await axios(options);
+        return postResponse.data;
+        // .then((response) => console.log(response.data))
+        // .catch((error) => console.error(error));
     }
 
 } 

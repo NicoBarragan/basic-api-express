@@ -19,4 +19,5 @@ const users = async (url: string, endpoint: string): Promise<void> => {
   console.log(usersGet);
 }
 
-users(URL, usersEndpoint);
+// users(URL, usersEndpoint);
+users(2, 2);
